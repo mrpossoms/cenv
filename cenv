@@ -1,0 +1,3 @@
+TOOLCHAIN=$(cat .toolchain)
+
+CENV_PATH=~/.cenv/toolchains/$TOOLCHAIN

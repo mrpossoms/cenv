@@ -1,0 +1,43 @@
+#!/bin/bash
+
+function dir_missing
+{
+	if [ -d "$1" ]
+	then
+		return 1 
+	else
+		return 0 
+	fi
+}
+
+function dir_exists
+{
+	if [ -d "$1" ]
+	then
+		return 0 
+	else
+		return 1 
+	fi
+}
+
+function file_missing
+{
+	if [ -f "$1" ]
+	then
+		return 1 
+	else
+		return 0 
+	fi
+}
+
+function cenv_setup
+{
+	dirs=(.cache toolchains)
+	for dir in ${dirs[@]}; do
+	echo "making dir: $dir"
+	if dir_missing $dir; then
+		mkdir $dir	
+	fi
+	done
+}
+
