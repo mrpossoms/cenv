@@ -14,5 +14,10 @@ else
 	echo "$TOOLCHAIN_AR cached, using"
 fi
 
-mkdir toolchains/$TOOLCHAIN_NAME
+mkdir -p toolchains/$TOOLCHAIN_NAME
 tar xf .cache/$TOOLCHAIN_AR -C toolchains/$TOOLCHAIN_NAME --strip-components 1
+if [ $? -ne 0 ]; then
+	echo 'Extraction failed, removing erroneous cached toolchain'
+	rm -rf toolchains/$TOOLCHAIN_NAME
+	rm -rf .cache/$TOOLCHAIN_AR
+fi
